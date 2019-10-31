@@ -21,12 +21,14 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById(R.id.textView2)
         textView?.text = ""
         textView?.movementMethod = ScrollingMovementMethod()
+        userInput.setText("") // clear input when activity is loaded
 
         button.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 textView?.append(userInput.text)
                 textView?.append("\n")
-                userInput.text.clear() // need to do this b/c it's an editable
+//                userInput.text.clear() // need to do this b/c it's an editable
+                userInput.setText("") // alternative syntax for clearing the text
             }
         })
     }
