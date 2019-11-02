@@ -10,7 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
-private val TAG = "MainActivity"
+private const val TAG = "MainActivity"
+private const val TEXT_CONTENTS = "TextContents"
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +50,9 @@ class MainActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "onRestoreInstanceState")
+        val savedString = savedInstanceState?.getString(TEXT_CONTENTS, "")
+        println("savedString: $savedString")
+        textView?.text = savedString
 
     }
 
@@ -58,9 +62,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        super.onSaveInstanceState(outState, outPersistentState)
+
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
         Log.d(TAG, "onSaveInstanceState")
+        println(textView?.text.toString())
+        outState?.putString(TEXT_CONTENTS, textView?.text.toString())
 
     }
 
